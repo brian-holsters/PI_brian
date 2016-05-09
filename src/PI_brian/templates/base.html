@@ -1,0 +1,31 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+		{% block css %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/pie.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/cabecera.css' %}">
+		{% endblock %}
+	</head>
+	<body>
+
+		<div id="bodycontent">
+			{% block cabecera %}
+			{% include 'cabecera.html' %}
+			{% endblock %}
+
+			{% block contenido %}
+				ESTO DEBE SER SOBREESCRITO
+			{% endblock %}
+
+			{% block pie %}
+				{% include 'pie.html' %}
+			{% endblock %}
+		</div>
+
+	</body>
+</html>

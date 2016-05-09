@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block css %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index_anonimo.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+	<a href="{% url 'login' %}">Login</a>
+	<a href="{% url 'registro' %}">Regístrate</a>
+{% endblock %}
