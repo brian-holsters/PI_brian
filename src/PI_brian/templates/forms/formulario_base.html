@@ -1,0 +1,29 @@
+<form id="form_{{form.id}}" method="post" action="{{request.path}}">
+	{% csrf_token %}
+	{% if form.title %}
+		<div class="form_title">
+			{{form.title}} {{forloop.counter}}
+		</div>
+	{% endif %}
+	{% for hidden in form.hidden_fields %}
+		{{ hidden }}
+	{% endfor %}
+	{% for field in form.visible_fields  %}
+		<div class="{% if form.errors %}error{% endif %}">
+			<label for="id_{{ field.html_name }}">{{ field.label }}</label>
+			<div class="controls">
+				{{ field }}
+				<span class="help-block help_text">
+					{{ field.help_text }}
+				</span>
+				<span class="help-block errors">
+					{{ field.errors }}
+				</span>
+			</div>
+		</div>
+	{% endfor %}
+	<div>
+		{# BOTONES! #}
+	</div>
+	{{ form.management_form }}
+</form>

@@ -24,20 +24,20 @@ class LoginForm(forms.Form):
 		return username
 
 class RegisterForm(forms.ModelForm):
+	password2 = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
 	class Meta:
 		model = User
-		exclude = []
+		fields = ["username", "email", "password", "password2"]
 
 	def __init__(self, *args, **kwargs):
 		super(RegisterForm, self).__init__(*args, **kwargs)
 		self.fields["username"] = forms.CharField(label=u"Nombre de usuario", max_length=64, required=True)
-		self.fields["password1"] = forms.CharField(label=u"contraseña", widget = forms.PasswordInput(), required=True)
 		self.fields["password2"] = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
 		self.fields["email"] = forms.EmailField(label=u"Correo electrónico", help_text = u"Dirección de correo electrónico para recuperar la contraseña", required=True)
 
 	def clean(self):
 		cleaned_data = super(RegisterForm, self).clean()
-		if cleaned_data.get("password1") != cleaned_data.get("password2"):
+		if cleaned_data.get("password") != cleaned_data.get("password2"):
 			raise forms.ValidationError(u"Las contraseñas introducidas no coinciden")
 		return cleaned_data
 
