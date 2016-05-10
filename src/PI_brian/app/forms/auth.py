@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.db import transaction
 import re
 from django import forms
 
@@ -22,5 +23,53 @@ class LoginForm(forms.Form):
 		# Si el nombre de usuario es válido y existe un usuario, devuelve el nombre de usuario
 		return username
 
-class RegisterForm(forms.Form):
-	pass
+class RegisterForm(forms.ModelForm):
+	class Meta:
+		model = User
+		exclude = []
+
+	def __init__(self, *args, **kwargs):
+		super(RegisterForm, self).__init__(*args, **kwargs)
+		self.fields["username"] = forms.CharField(label=u"Nombre de usuario", max_length=64, required=True)
+		self.fields["password1"] = forms.CharField(label=u"contraseña", widget = forms.PasswordInput(), required=True)
+		self.fields["password2"] = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
+		self.fields["email"] = forms.EmailField(label=u"Correo electrónico", help_text = u"Dirección de correo electrónico para recuperar la contraseña", required=True)
+
+	def clean(self):
+		cleaned_data = super(RegisterForm, self).clean()
+		if cleaned_data.get("password1") != cleaned_data.get("password2"):
+			raise forms.ValidationError(u"Las contraseñas introducidas no coinciden")
+		return cleaned_data
+
+	@transaction.atomic
+	def save(self, commit=False):
+		user = User(username=self.cleaned_data["username"], email=self.cleaned_data["email"],first_name=self.cleaned_data["first_name"], last_name=self.cleaned_data["last_name"])
+
+
+
+
+class ChangePasswordForm(forms.Form):
+	def __init__(self, user=None, *args, **kwargs):
+		self.user = user
+		super(ChangePasswordForm, self).__init__(*args, **kwargs)
+		self.fields["old_password"] = forms.CharField(label=_(u"Contraseña actual"), widget = forms.PasswordInput(), required=True)
+		self.fields["password1"] = forms.CharField(label=_(u"Contraseña nueva"), widget = forms.PasswordInput(), required=True)
+		self.fields["password2"] = forms.CharField(label=_(u"Confirme contraseña"), widget = forms.PasswordInput(), required=True)
+
+	def clean_old_password(self):
+		old_password = self.cleaned_data['old_password']
+		if not self.user.check_password(old_password):
+			raise ValidationError("Contraseña incorrecta")
+		return old_password
+
+	def clean(self):
+		cleaned_data = super(ChangePasswordForm, self).clean()
+		if cleaned_data["password1"] != cleaned_data["password2"]:
+			raise ValidationError("Las contraseñas no coinciden")
+		return cleaned_data
+
+	@transaction.atomic
+	def save(self):
+		user = self.user
+		user.set_password(self.cleaned_data["password1"])
+		user.save()
