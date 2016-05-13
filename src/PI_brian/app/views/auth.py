@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from PI_brian.app.forms.auth import RegisterForm, LoginForm
-
+from django.contrib.auth import logout as user_logout
 
 def loginView(request):
 	if request.method == "POST":
@@ -17,32 +17,34 @@ def loginView(request):
 		else:
 			form = LoginForm(request.POST)
 			if form.is_valid():
-				print form.cleaned_data
 				user = authenticate(username=form.cleaned_data["usuario"], password=form.cleaned_data["password"])
 				if user is not None and user.is_active:
+					print "logando"
 					login(request, user)
 					return HttpResponseRedirect(reverse("index"))
 	else:
 		form = LoginForm()
-	return render_to_response("forms/auth/login.html", {"form" : form}, RequestContext(request))
+	print "no logando"
+	return render_to_response("forms/auth/login.html", {"form" : form, "valor_aceptar":"Login"}, RequestContext(request))
 
 def registro(request):
 	if request.method == 'POST':
 		if "cancelar" in request.POST:
-			print "cancelar"
 			return HttpResponseRedirect(reverse("index"))
 		else:
 			form = RegisterForm(request.POST)
 			if form.is_valid():
 				form.save()
 
-				# Una vez que hemos creado el usuario, iniciamos sesión con él
-				print form.data
 				return HttpResponseRedirect(reverse("login"))
 	else:
 		form = RegisterForm()
 
-	return render_to_response('forms/auth/registro.html', {'form': form}, RequestContext(request))
+	return render_to_response('forms/auth/registro.html', {'form': form, "valor_aceptar":"Regístrame!"}, RequestContext(request))
+
+def logout(request):
+	user_logout(request)
+	return HttpResponseRedirect(reverse("index"))
 
 def reset_password(request):
 	if request.method == "POST":

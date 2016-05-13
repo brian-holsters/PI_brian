@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 __author__ = 'brian'
 
 from django.conf.urls import url, include
@@ -9,5 +10,6 @@ urlpatterns= [
 	url(r'^$/?', index.index, name="index"),
 
     url(r'^login$/?', auth.loginView, name="login"),
-	url(r'^registro$/?', auth.registro, name="registro")
+	url(r'^registro$/?', auth.registro, name="registro"),
+	url(r'^logout$/?', auth.logout, name="logout")
 ]

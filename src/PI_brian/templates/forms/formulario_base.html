@@ -23,6 +23,6 @@
 	{% endfor %}
 	<div>
 		{# BOTONES! #}
-		<input type="submit" value="Registrar" name="guardar" id="guardar">
-		<input type="submit" value="cancelar" name="cancelar" id="cancelar">
+		<input type="submit" value="{{valor_aceptar|default:'Guardar'}}" name="guardar" id="guardar">
+		<input type="submit" value="{{valor_cancelar|default:'Cancelar'}}" name="cancelar" id="cancelar">
 	</div>
