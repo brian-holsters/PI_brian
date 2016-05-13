@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import transaction
@@ -23,6 +24,7 @@ class LoginForm(forms.Form):
 		# Si el nombre de usuario es válido y existe un usuario, devuelve el nombre de usuario
 		return username
 
+
 class RegisterForm(forms.ModelForm):
 	password2 = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
 	class Meta:
@@ -32,8 +34,12 @@ class RegisterForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(RegisterForm, self).__init__(*args, **kwargs)
 		self.fields["username"] = forms.CharField(label=u"Nombre de usuario", max_length=64, required=True)
+		self.fields["password"] = forms.CharField(label=u"contraseña", widget = forms.PasswordInput(), required=True)
 		self.fields["password2"] = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
 		self.fields["email"] = forms.EmailField(label=u"Correo electrónico", help_text = u"Dirección de correo electrónico para recuperar la contraseña", required=True)
+
+		self.fields["first_name"] = forms.CharField(label=u"Nombre", max_length=64, required=True)
+		self.fields["last_name"] = forms.CharField(label=u"Apellidos", max_length=64, required=True)
 
 	def clean(self):
 		cleaned_data = super(RegisterForm, self).clean()
@@ -42,10 +48,12 @@ class RegisterForm(forms.ModelForm):
 		return cleaned_data
 
 	@transaction.atomic
-	def save(self, commit=False):
+	def save(self, commit=True):
+		# super(RegisterForm, self).save(commit=commit)
 		user = User(username=self.cleaned_data["username"], email=self.cleaned_data["email"],first_name=self.cleaned_data["first_name"], last_name=self.cleaned_data["last_name"])
-
-
+		if commit:
+			user.save()
+		return user
 
 
 class ChangePasswordForm(forms.Form):

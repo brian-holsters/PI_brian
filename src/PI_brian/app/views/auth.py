@@ -1,37 +1,51 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth import authenticate, login as user_login
+from django.conf import settings
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from PI_brian.app.forms.auth import RegisterForm
+from PI_brian.app.forms.auth import RegisterForm, LoginForm
 
 
-def login(request):
-	pass
+def loginView(request):
+	if request.method == "POST":
+		if "cancelar" in request.POST:
+			return HttpResponseRedirect(reverse("index"))
+		else:
+			form = LoginForm(request.POST)
+			if form.is_valid():
+				print form.cleaned_data
+				user = authenticate(username=form.cleaned_data["usuario"], password=form.cleaned_data["password"])
+				if user is not None and user.is_active:
+					login(request, user)
+					return HttpResponseRedirect(reverse("index"))
+	else:
+		form = LoginForm()
+	return render_to_response("forms/auth/login.html", {"form" : form}, RequestContext(request))
 
 def registro(request):
 	if request.method == 'POST':
-		if "cancel" in request.POST:
+		if "cancelar" in request.POST:
+			print "cancelar"
 			return HttpResponseRedirect(reverse("index"))
 		else:
 			form = RegisterForm(request.POST)
 			if form.is_valid():
-				new_user = form.save(commit=True)
+				form.save()
+
 				# Una vez que hemos creado el usuario, iniciamos sesión con él
-				user = authenticate(username=new_user.username, password=form.data["password1"])
-				if user and not user is None:
-					user_login(request, user)
-					return HttpResponseRedirect(reverse("index"))
+				print form.data
+				return HttpResponseRedirect(reverse("login"))
 	else:
 		form = RegisterForm()
 
 	return render_to_response('forms/auth/registro.html', {'form': form}, RequestContext(request))
 
 def reset_password(request):
-	if(request.method == "POST"):
+	if request.method == "POST":
 		if "username" in request.POST:
 			user = User.objects.get(username__exact=request.POST["username"])
 			password = User.objects.make_random_password()

@@ -1,5 +1,4 @@
-<form id="form_{{form.id}}" method="post" action="{{request.path}}">
-	{% csrf_token %}
+
 	{% if form.title %}
 		<div class="form_title">
 			{{form.title}} {{forloop.counter}}
@@ -24,6 +23,6 @@
 	{% endfor %}
 	<div>
 		{# BOTONES! #}
+		<input type="submit" value="Registrar" name="guardar" id="guardar">
+		<input type="submit" value="cancelar" name="cancelar" id="cancelar">
 	</div>
-	{{ form.management_form }}
-</form>
