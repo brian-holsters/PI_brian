@@ -4,20 +4,17 @@
 
         </div>
     </div>
-    <div class="cabecera-menu">
-        <nav>
-            <ul class="horizontal-ul">
-                <li>amigos</li>
-                <li>descubrir</li>
-                <li>pollas en vinagre</li>
-            </ul>
-        </nav>
-    </div>
-
     <div class="cabecera-usuario">
-        <div class="usuario">
-            <span class="nombre-usuario">{{user.username}}</span>
-            <a href="{% url 'logout' %}">Cerrar sesión</a>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="usuario">
+                <span class="nombre-usuario">{{user.username}}</span>
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
+            </div>
+        {% else %}
+            <div class="auth">
+                <a class="btn btn-default" href="{% url 'registro' %}">Quiero una cuenta</a>
+                <a class="btn btn-default" href="{% url 'login' %}">Inicar sesión</a>
+            </div>
+        {% endif %}
     </div>
 </div>
