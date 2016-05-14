@@ -1,0 +1,23 @@
+/*FORMULARIO LOGIN Y REGISTRO*/
+.auth-form{
+    margin: 40px auto;
+    width: 25%;
+    float: none;
+}
+.auth-form .form-field input{
+    width: 100%;
+}
+.auth-form .form-actions input{
+    display: block;
+    width: 45%;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+.form-head img{
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100px;
+    width: auto;
+}
+/**/

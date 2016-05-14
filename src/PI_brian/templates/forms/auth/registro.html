@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-<form id="form_{{form.id}}" method="post" action="{{request.path}}">
-	{% csrf_token %}
-	{% include 'forms/formulario_base.html' %}
-</form>
+<div class="auth-form col-xs-12">
+	{% include 'forms/registro_form.html' %}
+</div>
 {% endblock %}

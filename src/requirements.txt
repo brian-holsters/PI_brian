@@ -1,1 +1,2 @@
 django==1.9.5
+django-widget-tweaks==1.4.1

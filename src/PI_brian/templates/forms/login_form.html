@@ -1,0 +1,4 @@
+<form id="form_{{form.id}}" method="post" action="{{request.path}}">
+    {% csrf_token %}
+    {% include 'forms/formulario_base.html' %}
+</form>

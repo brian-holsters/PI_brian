@@ -38,8 +38,8 @@ class RegisterForm(forms.ModelForm):
 		self.fields["password2"] = forms.CharField(label=u"confirme contraseña", widget = forms.PasswordInput(), required=True)
 		self.fields["email"] = forms.EmailField(label=u"Correo electrónico", help_text = u"Dirección de correo electrónico para recuperar la contraseña", required=True)
 
-		self.fields["first_name"] = forms.CharField(label=u"Nombre", max_length=64, required=True)
-		self.fields["last_name"] = forms.CharField(label=u"Apellidos", max_length=64, required=True)
+		# self.fields["first_name"] = forms.CharField(label=u"Nombre", max_length=64, required=True)
+		# self.fields["last_name"] = forms.CharField(label=u"Apellidos", max_length=64, required=True)
 
 	def clean(self):
 		cleaned_data = super(RegisterForm, self).clean()
@@ -50,7 +50,7 @@ class RegisterForm(forms.ModelForm):
 	@transaction.atomic
 	def save(self, commit=True):
 		# super(RegisterForm, self).save(commit=commit)
-		user = User(username=self.cleaned_data["username"], email=self.cleaned_data["email"],first_name=self.cleaned_data["first_name"], last_name=self.cleaned_data["last_name"])
+		user = User(username=self.cleaned_data["username"], email=self.cleaned_data["email"],first_name=" ", last_name=" ")
 		user.set_password(self.cleaned_data["password"])
 		if commit:
 			user.save()

@@ -2,3 +2,44 @@
     margin: 0;
     padding: 0;
 }
+p{
+    text-align: justify;
+}
+html{
+    background: url('../img/fondo.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.size-10{
+    width:10%;
+}
+.size-20{
+    width:20%;
+}
+.size-30{
+    width:30%;
+}
+.size-40{
+    width:40%;
+}
+.size-50{
+    width:50%;
+}
+.size-60{
+    width:60%;
+}
+.size-70{
+    width:70%;
+}
+.size-80{
+    width:80%;
+}
+size-90{
+    width:90%;
+}
+full-width, size-100{
+    width:100%;
+}
