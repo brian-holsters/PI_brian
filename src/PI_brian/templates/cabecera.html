@@ -2,7 +2,7 @@
 <div id="cabecera">
     <div class="cabecera-principal">
         <div class="cabecera-logo">
-            <img src="{% static 'img/logo.png' %}">
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"></a>
         </div>
     </div>
     <div class="cabecera-usuario">
@@ -14,7 +14,7 @@
         {% else %}
             <div class="auth">
                 <a class="btn btn-default" href="{% url 'registro' %}">Quiero una cuenta</a>
-                <a class="btn btn-default" href="{% url 'login' %}">Inicar sesión</a>
+                <a class="btn btn-default" href="{% url 'login' %}">Iniciar sesión</a>
             </div>
         {% endif %}
     </div>

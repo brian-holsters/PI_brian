@@ -2,6 +2,8 @@
     width: 100%;
     height: 60px;
     background-color: #efefef;
+    position: fixed;
+    z-index: 1000;
 }
 .cabecera-principal{
     width: 20%;

@@ -25,7 +25,7 @@ def loginView(request):
 	else:
 		form = LoginForm()
 	print "no logando"
-	return render_to_response("forms/auth/login.html", {"form" : form, "valor_aceptar":"Login"}, RequestContext(request))
+	return render_to_response("auth/login.html", {"form" : form, "valor_aceptar":"Login"}, RequestContext(request))
 
 def registro(request):
 	if request.method == 'POST':
@@ -40,7 +40,7 @@ def registro(request):
 	else:
 		form = RegisterForm()
 
-	return render_to_response('forms/auth/registro.html', {'form': form, "valor_aceptar":"Regístrame!"}, RequestContext(request))
+	return render_to_response('auth/registro.html', {'form': form, "valor_aceptar":"Regístrame!"}, RequestContext(request))
 
 def logout(request):
 	user_logout(request)

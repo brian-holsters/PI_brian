@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block css %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    <div class="index">
+        <div id="posts-container">
+            <div id="post-form">
+                {% include 'forms/post_form.html' %}
+            </div>
+            <ul id="posts-list">
+                {% for post in posts %}
+                    {%include 'index/post.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

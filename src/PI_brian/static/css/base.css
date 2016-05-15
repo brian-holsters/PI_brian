@@ -12,7 +12,13 @@ html{
     -o-background-size: cover;
     background-size: cover;
 }
-
+#bodycontent{
+    /*este margen tiene que ser igual que la altura de la cabecera*/
+    margin-top: 60px;
+}
+section{
+    border-bottom: 1px solid black;
+}
 .size-10{
     width:10%;
 }

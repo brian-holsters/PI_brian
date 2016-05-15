@@ -21,22 +21,22 @@
 			<link rel="stylesheet" type="text/css" href="{% static 'css/pie.css' %}">
 			<link rel="stylesheet" type="text/css" href="{% static 'css/cabecera.css' %}">
 		{% endblock %}
+
+        {% block js %}
+
+        {% endblock %}
 	</head>
 	<body>
-
-		<div id="bodycontent">
-			{% block cabecera %}
-			{% include 'cabecera.html' %}
-			{% endblock %}
-
+        {% block cabecera %}
+            {% include 'cabecera.html' %}
+        {% endblock %}
+		<div id="bodycontent" class="col-xs-12">
 			{% block contenido %}
 				ESTO DEBE SER SOBREESCRITO
 			{% endblock %}
-
-			{% block pie %}
-				{#{% include 'pie.html' %}#}
-			{% endblock %}
 		</div>
-
+        {% block pie %}
+            {#{% include 'pie.html' %}#}
+        {% endblock %}
 	</body>
 </html>
