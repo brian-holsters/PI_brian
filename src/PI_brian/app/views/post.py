@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-
+from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.http.response import Http404, JsonResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from PI_brian.app.forms.post import PostForm
 
@@ -23,8 +25,8 @@ def ajax_post(request):
     if request.method == "POST":
         form = PostForm(user, request.POST)
         if form.is_valid():
-            form.save()
-            return JsonResponse({"ok":"Post publicado"})
+            saved_post = form.save()
+            return render_to_response("index/post.html", {"post":saved_post}, RequestContext(request))
         else:
-            return JsonResponse({"Error":"Formulario no válido"})
-    return JsonResponse({"Error":"La petición tiene que ser por POST"})
+            raise Exception("formulario no valido")
+    raise Exception("Petición no es por POST")

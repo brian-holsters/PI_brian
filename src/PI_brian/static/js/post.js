@@ -28,10 +28,10 @@ $(document).ready(function(){
                 "csrfmiddlewaretoken" : csrftoken
             },
             function(data, textStatus, jqXHR){
-                console.log(data);
-                location.reload();
-            },
-            "json"
+                if (textStatus === "success"){
+                    $("#posts-list").prepend(data);
+                }
+            }
         );
 
     });
