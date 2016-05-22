@@ -25,5 +25,5 @@ def ver_propio_perfil(request):
 
 
 def ver_otro_perfil(request, propietario):
-    posts = propietario.posts.filter()
-    return render_to_response("perfil/otro.html", {"posts":posts, "propietario":propietario})
+    posts = propietario.posts.filter().order_by("-fecha_creacion")
+    return render_to_response("perfil/otro.html", {"posts":posts, "propietario":propietario}, RequestContext(request))
