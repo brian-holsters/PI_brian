@@ -25,4 +25,5 @@ def ver_propio_perfil(request):
 
 
 def ver_otro_perfil(request, propietario):
-    pass
+    posts = propietario.posts.filter()
+    return render_to_response("perfil/otro.html", {"posts":posts, "propietario":propietario})

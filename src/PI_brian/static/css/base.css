@@ -19,6 +19,12 @@ html{
 section{
     border-bottom: 1px solid black;
 }
+
+
+.block{
+    display: block;
+}
+/*Anchuras: */
 .size-10{
     width:10%;
 }

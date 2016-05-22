@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block css %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    <div class="index">
+        <div id="perfil-info">
+            <span class="block perfil-info" id="perfil-nombre">
+                <a href="{% url 'perfil' username=propietario.username %}">
+                    <span class="fa fa-2x fa-user"></span>
+                    {{propietario.username}}
+                </a>
+            </span>
+            <span class="block" id="perfil-email">
+                {{propietario.email}}
+            </span>
+            <span class="block" id="perfil-publicaciones">
+                {{propietario.posts.count}}
+            </span>
+        </div>
+        <div id="posts-container">
+            <ul id="posts-list">
+                {% for post in posts %}
+                    {%include 'index/post.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
