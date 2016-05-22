@@ -19,7 +19,7 @@ def ver_perfil(request, username):
 def ver_propio_perfil(request):
     usuario = request.user
     form = PostForm(usuario)
-    posts = usuario.posts.filter()
+    posts = usuario.posts.filter().order_by("-fecha_creacion")
     replacements = {"posts": posts, "form": form, "valor_aceptar": "Publicar", "ocultar_cancelar": True}
     return render_to_response("perfil/propio.html", replacements, RequestContext(request))
 

@@ -16,4 +16,5 @@ urlpatterns= [
     url(r'^perfil/(?P<username>[\w\d]+)$/?', perfil.ver_perfil, name="perfil"),
 
     url(r'^post$/?', post.post, name="post"),
+    url(r'^ajax_post/?', post.ajax_post),
 ]
