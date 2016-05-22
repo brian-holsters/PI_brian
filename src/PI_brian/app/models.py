@@ -27,8 +27,6 @@ class Post(Model):
         dias = tiempo.days
         horas = tiempo.seconds/(60*60)
         minutos = tiempo.seconds/60
-        print horas
-        segundos = tiempo.seconds
         if dias > 0:
             return str(dias) + " dias"
         elif horas > 0:
