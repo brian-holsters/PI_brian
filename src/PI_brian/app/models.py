@@ -18,16 +18,22 @@ class Post(Model):
     @property
     def tiempo_desde_creacion(self):
         tiempo = timezone.now() - self.fecha_creacion
+        print tiempo
         result = Post._parse_tiempo(tiempo)
         return result
 
     @staticmethod
     def _parse_tiempo(tiempo):
+        dias = tiempo.days
+        horas = tiempo.seconds/(60*60)
+        minutos = tiempo.seconds/60
+        print horas
         segundos = tiempo.seconds
-        if segundos > 60*60*24:
-            return str(segundos/(60*60*24)) + " dias"
-        if segundos > 60*60:
-            return str(segundos/(60*60)) + " horas"
-        if segundos > 60:
-            return str(segundos/60) + " minutos"
-        return "un momento"
+        if dias > 0:
+            return str(dias) + " dias"
+        elif horas > 0:
+            return str(horas) + " horas"
+        elif minutos > 0:
+            return str(minutos) + " minutos"
+        else:
+            return "un momento"
