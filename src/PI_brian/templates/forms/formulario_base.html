@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 {% if form.title %}
     <div class="form_title">
-        {{form.title}} {{forloop.counter}}
+        {{form.title}}
     </div>
 {% endif %}
 {% for hidden in form.hidden_fields %}

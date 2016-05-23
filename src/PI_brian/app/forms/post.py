@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
-from django.forms import ModelForm, forms
+from django import forms
+from django.forms import ModelForm
 from django.utils import timezone
 
 from PI_brian.app.models import Post
@@ -10,6 +11,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         exclude = ["is_erased", "user"]
+        texto = forms.CharField(widget=forms.Textarea)
 
     def __init__(self, user, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
