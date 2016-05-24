@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.db.models import Model, DateTimeField, BooleanField, CharField, ForeignKey
+from django.db.models import Model, DateTimeField, BooleanField, CharField, ForeignKey, ImageField
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -12,6 +12,7 @@ class Post(Model):
     fecha_creacion = DateTimeField(verbose_name=u"fecha en la que se ha creado el objeto", auto_now=True)
     is_erased = BooleanField(null=False, default=False, verbose_name=u"Marca si se ha eliminado de forma lógica el objeto")
     texto = CharField(verbose_name=u"contenido del post", max_length=250, null=False)
+    emote = ForeignKey("Emote", verbose_name=u"icono que acompaña al Post", null=True, default=None)
 
     user = ForeignKey(User, verbose_name=u"Usuario que ha publicado el post", related_name="posts")
 
@@ -35,3 +36,12 @@ class Post(Model):
             return str(minutos) + " minutos"
         else:
             return "un momento"
+
+class Reply(Post):
+    post = ForeignKey(Post, verbose_name=u"Post al que responde este", related_name="replies")
+
+class Emote(Model):
+    class Meta:
+        ordering = ["nombre"]
+    nombre = CharField(verbose_name=u"Nombre del emoticono", max_length=20)
+    imagen = ImageField(verbose_name=u"Imagen del emoticono")
