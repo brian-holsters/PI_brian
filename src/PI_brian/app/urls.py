@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from PI_brian.app.views.admin import emotes
 
 __author__ = 'brian'
 
@@ -17,4 +18,7 @@ urlpatterns= [
 
     url(r'^post$/?', post.post, name="post"),
     url(r'^ajax_post/?', post.ajax_post),
+
+    ## URLs de administración:
+    url(r'^administracion/emotes/?$', emotes.lista, name="emotes"),
 ]
