@@ -31,6 +31,9 @@
     border: 4px solid #efefef;
     border-radius: 4px;
 }
+#posts-list li:first-child{
+    margin-top: 0;
+}
 span.perfil-info a{
     text-decoration: none;
     color: inherit;

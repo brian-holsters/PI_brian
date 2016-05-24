@@ -21,18 +21,20 @@ $(document).ready(function(){
         event.preventDefault();
         this.action = window.location.protocol + "//" + window.location.host + "/ajax_post";
 
-        $.post(
-            this.action,
-            {
-                "texto" : this.texto.value,
-                "csrfmiddlewaretoken" : csrftoken
-            },
-            function(data, textStatus, jqXHR){
-                if (textStatus === "success"){
-                    $("#posts-list").prepend(data);
+        if(this.texto.value){
+            $.post(
+                this.action,
+                {
+                    "texto" : this.texto.value,
+                    "csrfmiddlewaretoken" : csrftoken
+                },
+                function(data, textStatus, jqXHR){
+                    if (textStatus === "success"){
+                        $("#posts-list").prepend(data);
+                    }
                 }
-            }
-        );
-
+            );
+            this.texto.value="";
+        }
     });
 });

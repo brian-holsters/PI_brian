@@ -2,9 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 <form method="post" action="{% url 'post' %}">
     {% csrf_token %}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
-
+    <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
+    <button type="submit" name="guardar" class="btn btn-default">Publicar</button>
 
 </form>

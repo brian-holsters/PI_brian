@@ -21,3 +21,12 @@
     width: auto;
 }
 /**/
+textarea{
+    max-width: 100%;
+    max-height: 100%;
+}
+#post-textarea{
+    height: 100px;
+    width: 100%;
+    resize: none;
+}
