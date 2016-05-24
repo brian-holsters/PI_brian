@@ -1,14 +1,35 @@
 {% load static from staticfiles %}
-<div id="cabecera">
+<header id="cabecera" class="{% if user.is_staff %}cabecera-admin{% endif %}">
     <div class="cabecera-principal">
         <div class="cabecera-logo">
             <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"></a>
         </div>
     </div>
+    {% if user.is_staff %}
+        <div class="cabecera-admin">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                      <span class="navbar-brand" href="#">Administración</span>
+                    </div>
+
+                    <ul class="nav navbar-nav">
+                        <li class="nav-element">
+                            <a href="#">Emotes</a>
+                        </li>
+                        <li class="nav-element">
+                            <a href="#">Sanciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    {% endif %}
     <div class="cabecera-usuario">
         {% if user.is_authenticated %}
             <div class="usuario">
-                <span class="nombre-usuario">{{user.username}}</span>
+                <span class="nombre-usuario">{{user.username}}{% if user.is_staff %} (admin){% endif %}</span>
                 <a href="{% url 'logout' %}">Cerrar sesión</a>
             </div>
         {% else %}
@@ -18,4 +39,4 @@
             </div>
         {% endif %}
     </div>
-</div>
+</header>

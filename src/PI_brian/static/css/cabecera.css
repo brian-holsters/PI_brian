@@ -7,16 +7,21 @@
 }
 .cabecera-principal{
     width: 20%;
+    hieght: 100%;
     float: left;
 }
-.cabecera-menu{
+.cabecera-admin{
     width: 60%;
     height: 100%;
     float: left;
 }
 .cabecera-usuario{
     width: 20%;
-    float: left;
+    height: 100%;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-right: 10px;
 }
 
 .cabecera-logo{
@@ -50,17 +55,12 @@
     line-height: 30px;
     background-color: rgba(200,200,200,0.5)
 }
-.cabecera-usuario{
-    padding: 1%;
-    box-sizing: border-box;
-    float:right;
-    width: 75%;
-}
+
 .usuario, .auth{
     display: inline-block;
     vertical-align: middle;
     width: 90%;
-    margin-right: 10px;
+    margin-right: 10%;
     text-align: right;
     float:right;
 }
