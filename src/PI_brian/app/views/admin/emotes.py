@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
+from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from PI_brian.app.forms.emote import EmoteForm
 from PI_brian.app.models import Emote
 
-
+@staff_member_required
 def lista(request):
 	emotes = Emote.objects.filter()
 	return render_to_response("admin/emotes/lista.html", {"emotes":emotes}, RequestContext(request))
 
+
+@staff_member_required
 def nuevo(request):
 	if request.method == "POST":
 		form = EmoteForm(request.POST, request.FILES)
