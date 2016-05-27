@@ -16,6 +16,8 @@ def lista(request):
 @staff_member_required(login_url="login")
 def nuevo(request):
 	if request.method == "POST":
+		if "cancelar" in request.POST:
+			return HttpResponseRedirect(reverse("emotes"))
 		form = EmoteForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
@@ -23,3 +25,19 @@ def nuevo(request):
 	else:
 		form = EmoteForm()
 	return render_to_response("admin/emotes/nuevo.html", {"form":form}, RequestContext(request))
+
+
+@staff_member_required(login_url="login")
+def editar(request, emote_id):
+	emote = get_object_or_404(Emote, **{"id":emote_id})
+	if request.method == "POST":
+		if "cancelar" in request.POST:
+			return HttpResponseRedirect(reverse("emotes"))
+		form = EmoteForm(request.POST, request.FILES, instance=emote)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse("emotes"))
+	else:
+		form = EmoteForm(instance=emote)
+
+	return render_to_response("admin/emotes/editar.html", {"form":form, "emote": emote}, RequestContext(request))

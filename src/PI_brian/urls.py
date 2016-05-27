@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'', include('PI_brian.app.urls')),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}),
 
+    url(r'^sticky-uploads/', include('stickyuploads.urls')),
 ]

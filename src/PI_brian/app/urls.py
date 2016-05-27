@@ -21,5 +21,6 @@ urlpatterns= [
 
     ## URLs de administración:
     url(r'^administracion/emotes/?$', emotes.lista, name="emotes"),
-    url(r'^administracion/emotes/nuevo/?$', emotes.nuevo, name="nuevo_emote")
+    url(r'^administracion/emotes/nuevo/?$', emotes.nuevo, name="nuevo_emote"),
+    url(r'^administracion/emotes/(?P<emote_id>[\d]+)/editar/?$', emotes.editar, name="editar_emote"),
 ]

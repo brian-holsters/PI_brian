@@ -12,7 +12,7 @@
 		<img class="admin-emote" src="{{ emote.imagen.url }}" />
 		<span class="admin-emote">{{emote.nombre}}</span>
 		<div class="admin-emote">
-			<a href="#" class="btn btn-default">Editar</a>
+			<a href="{% url 'editar_emote' emote_id=emote.id %}" class="btn btn-default">Editar</a>
 		</div>
 	</div>
 	{% endfor %}
