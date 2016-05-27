@@ -11,6 +11,12 @@ from PI_brian.app.forms.auth import RegisterForm, LoginForm
 from django.contrib.auth import logout as user_logout
 
 def loginView(request):
+	if "next" in request.GET:
+		print "next!"
+		redirect_url = request.GET["next"]
+	else:
+		redirect_url = reverse("index")
+
 	if request.method == "POST":
 		if "cancelar" in request.POST:
 			return HttpResponseRedirect(reverse("index"))
@@ -19,12 +25,10 @@ def loginView(request):
 			if form.is_valid():
 				user = authenticate(username=form.cleaned_data["usuario"], password=form.cleaned_data["password"])
 				if user is not None and user.is_active:
-					print "logando"
 					login(request, user)
-					return HttpResponseRedirect(reverse("index"))
+					return HttpResponseRedirect(redirect_url)
 	else:
 		form = LoginForm()
-	print "no logando"
 	return render_to_response("auth/login.html", {"form" : form, "valor_aceptar":"Login"}, RequestContext(request))
 
 def registro(request):

@@ -7,13 +7,13 @@ from django.template import RequestContext
 from PI_brian.app.forms.emote import EmoteForm
 from PI_brian.app.models import Emote
 
-@staff_member_required
+@staff_member_required(login_url="login")
 def lista(request):
 	emotes = Emote.objects.filter()
 	return render_to_response("admin/emotes/lista.html", {"emotes":emotes}, RequestContext(request))
 
 
-@staff_member_required
+@staff_member_required(login_url="login")
 def nuevo(request):
 	if request.method == "POST":
 		form = EmoteForm(request.POST, request.FILES)
