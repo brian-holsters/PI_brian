@@ -20,8 +20,8 @@ class PostForm(ModelForm):
         self.fecha_creacion = timezone.now()
         # self.fields["texto"].widget =
 
-    def save(self):
-        post = super(PostForm, self).save(commit=False)
+    def save(self, commit=True):
+        post = super(PostForm, self).save(commit=commit)
         post.user = self.user
         post.fecha_creacion = self.fecha_creacion
         post.is_erased = False

@@ -21,4 +21,5 @@ urlpatterns= [
 
     ## URLs de administración:
     url(r'^administracion/emotes/?$', emotes.lista, name="emotes"),
+    url(r'^administracion/emotes/nuevo/?$', emotes.nuevo, name="nuevo_emote")
 ]
