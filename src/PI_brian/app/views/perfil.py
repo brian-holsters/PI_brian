@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from PI_brian.app.forms.post import PostForm
+from PI_brian.app.models import Emote
 
 
 def ver_perfil(request, username):
@@ -18,9 +19,11 @@ def ver_perfil(request, username):
 
 def ver_propio_perfil(request):
     usuario = request.user
+    emotes = Emote.objects.filter()
+
     form = PostForm(usuario)
     posts = usuario.posts.filter().order_by("-fecha_creacion")
-    replacements = {"posts": posts, "form": form, "valor_aceptar": "Publicar", "ocultar_cancelar": True}
+    replacements = {"posts": posts, "form": form, "valor_aceptar": "Publicar", "ocultar_cancelar": True, "emotes" : emotes}
     return render_to_response("perfil/propio.html", replacements, RequestContext(request))
 
 

@@ -48,3 +48,6 @@ class Emote(Model):
         ordering = ["nombre"]
     nombre = CharField(verbose_name=u"Nombre del emoticono", max_length=20)
     imagen = ImageField(verbose_name=u"Imagen del emoticono", upload_to="emotes")
+
+    def __unicode__(self):
+        return self.nombre

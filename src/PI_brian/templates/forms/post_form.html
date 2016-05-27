@@ -6,3 +6,16 @@
     <button type="submit" name="guardar" class="btn btn-default">Publicar</button>
 
 </form>
+
+
+TESTING:
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle emote-selector" type="button" data-toggle="dropdown"></button>
+    <ul class="dropdown-menu table-dropdown">
+        {% for emote in emotes %}
+            <li class="cell">
+                <a href="#" id="emote_{{emote.id}}"><img src="{{emote.imagen.url}}" /></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
