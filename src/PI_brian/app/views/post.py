@@ -26,7 +26,7 @@ def ajax_post(request):
         form = PostForm(user, request.POST)
         if form.is_valid():
             saved_post = form.save()
-            return render_to_response("index/post.html", {"post":saved_post}, RequestContext(request))
+            return render_to_response("perfil/post.html", {"post":saved_post}, RequestContext(request))
         else:
             raise Exception("formulario no valido")
     raise Exception("Petición no es por POST")
