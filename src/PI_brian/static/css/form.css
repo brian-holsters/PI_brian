@@ -30,3 +30,77 @@ textarea{
     width: 100%;
     resize: none;
 }
+
+/*CAJA DE SELECCION DE EMOTE: */
+
+.emote-selector, .emote-selector:active{
+    height: 50px;
+    border-radius: 4px;
+    padding: 2.5px;
+    background-color: #fff;
+    border: 0;
+    text-align: left;
+    border: 2.5px solid #efefef
+}
+.emote-selector-imagen{
+    width: 40px;
+    height: 40px;
+}
+.table-dropdown{
+    width: 180px;
+    max-height: 180px;
+    overflow-y: auto;
+    box-sizing: content-box;
+}
+.table-dropdown li.cell{
+    display: block;
+    width: 45px;
+    height: 45px;
+    float: left;
+    overflow: hidden;
+}
+.table-dropdown li.cell a{
+    padding: 0;
+}
+
+.post-container{
+    background-color: #f00;
+    padding: 2.5%;
+    overflow:hidden;
+    width: auto;
+}
+
+#post-textarea {
+    max-width: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.post-button {
+    margin-top: 25px;
+    height: 50px;
+    width: 100px;
+}
+
+.post-form-container{
+    text-align:right;
+    vertical-align: middle;
+}
+
+.emote-selector-container, #post-textarea, .post-button{
+    display: inline-block;
+    float: none;
+}
+
+.emote-selector-container, .post-button{
+    margin-top: -100px;
+    top: -50px;
+}
+
+
+
+@media (max-width: 992px){
+    .post-form-container{
+        text-align: center;
+    }
+}

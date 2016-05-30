@@ -1,12 +1,7 @@
 
 #posts-container{
     margin-top: 30px;
-    float:right;
     list-style: none;
-}
-
-#post-form{
-    width: 100%;
 }
 
 #perfil-info{

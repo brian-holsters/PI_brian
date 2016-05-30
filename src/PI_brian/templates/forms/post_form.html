@@ -1,22 +1,26 @@
 {% load static from staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
-<form method="post" action="{% url 'post' %}">
-    {% csrf_token %}
-    <div class="dropdown emote-selector-container">
-        <button class="dropdown-toggle emote-selector" type="button" data-toggle="dropdown">
-            <!--<span class="glyphicon glyphicon-triangle-bottom"></span>-->
-            <img class="emote-selector-imagen" src="{% static 'img/boton_emote.png' %}" />
-        </button>
-        <ul class="dropdown-menu table-dropdown">
-            {% for emote in emotes %}
-                <li class="cell">
-                    <a href="#" id="emote_{{emote.id}}"><img src="{{emote.imagen.url}}" width="45px" height="45px"/></a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
-    <button type="submit" name="guardar" class="btn btn-default ">Publicar</button>
 
-</form>
+<div class="post-form-container">
+    <form method="post" action="{% url 'post' %}">
+        {% csrf_token %}
+            <div class="dropdown emote-selector-container">
+                <button class="dropdown-toggle emote-selector" type="button" data-toggle="dropdown">
+                    <!--<span class="glyphicon glyphicon-triangle-bottom"></span>-->
+                    <img class="emote-selector-imagen" src="{% static 'img/boton_emote.png' %}" />
+                </button>
+                <ul class="dropdown-menu table-dropdown">
+                    {% for emote in emotes %}
+                        <li class="cell">
+                            <a href="#" id="emote_{{emote.id}}"><img src="{{emote.imagen.url}}" width="45px" height="45px"/></a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
+
+            <button type="submit" name="guardar" class="btn btn-default post-button">Publicar</button>
+    </form>
+</div>
