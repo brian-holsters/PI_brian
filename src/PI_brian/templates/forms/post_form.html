@@ -13,7 +13,7 @@
                 <ul class="dropdown-menu table-dropdown">
                     {% for emote in emotes %}
                         <li class="cell">
-                            <a data-emote_id="{{emote.id}}" href="#"><img src="{{emote.imagen.url}}" width="45px" height="45px"/></a>
+                            <a data-emote_id="{{emote.id}}" href="#"><img class="emote-selector-imagen" src="{{emote.imagen.url}}"/></a>
                         </li>
                     {% endfor %}
                 </ul>
