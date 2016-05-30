@@ -16,6 +16,17 @@ function getCookie(name) {
 
 
 $(document).ready(function(){
+    /*SELECCION DE EMOTE*/
+    var $botones_emote = $("a[data-emote_id]");
+    var $hidden_emote = $("#hidden_emote");
+
+    $botones_emote.click(function(){
+    $this = $(this);
+        $hidden_emote.value = $this.data("emote_id");
+        console.log($hidden_emote);
+    });
+
+    /*PROCESO AJAX*/
     $("#post-form form").submit(function(event){
         var csrftoken = getCookie('csrftoken');
         event.preventDefault();
@@ -26,7 +37,8 @@ $(document).ready(function(){
                 this.action,
                 {
                     "texto" : this.texto.value,
-                    "csrfmiddlewaretoken" : csrftoken
+                    "csrfmiddlewaretoken" : csrftoken,
+                    "emote_id": this.emote_id.value
                 },
                 function(data, textStatus, jqXHR){
                     if (textStatus === "success"){

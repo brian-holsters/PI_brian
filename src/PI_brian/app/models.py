@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class Post(Model):
     class Meta:
         ordering = ["fecha_creacion"]
+
     fecha_creacion = DateTimeField(verbose_name=u"fecha en la que se ha creado el objeto", auto_now=True)
     is_erased = BooleanField(null=False, default=False, verbose_name=u"Marca si se ha eliminado de forma lógica el objeto")
     texto = CharField(verbose_name=u"contenido del post", max_length=250, null=False)

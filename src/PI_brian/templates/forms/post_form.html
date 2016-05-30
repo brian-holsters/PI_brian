@@ -13,11 +13,12 @@
                 <ul class="dropdown-menu table-dropdown">
                     {% for emote in emotes %}
                         <li class="cell">
-                            <a href="#" id="emote_{{emote.id}}"><img src="{{emote.imagen.url}}" width="45px" height="45px"/></a>
+                            <a data-emote_id="{{emote.id}}" href="#"><img src="{{emote.imagen.url}}" width="45px" height="45px"/></a>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
+            <input id="hidden_emote" type="hidden" name="emote_id" value="1">
 
             <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
 

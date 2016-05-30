@@ -4,13 +4,15 @@ from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
 
-from PI_brian.app.models import Post
+from PI_brian.app.models import Post, Emote
 
 
 class PostForm(ModelForm):
+    emote_id = forms.CharField()
+
     class Meta:
         model = Post
-        exclude = ["is_erased", "user"]
+        exclude = ["is_erased", "user", "emote"]
         texto = forms.CharField(widget=forms.Textarea)
 
     def __init__(self, user, *args, **kwargs):
@@ -18,13 +20,20 @@ class PostForm(ModelForm):
         user = User.objects.get(username=user.username)
         self.user = user
         self.fecha_creacion = timezone.now()
-        # self.fields["texto"].widget =
+        self.emote = None
 
-    def save(self, commit=True):
+    def save(self, commit=False):
         post = super(PostForm, self).save(commit=commit)
         post.user = self.user
         post.fecha_creacion = self.fecha_creacion
         post.is_erased = False
         post.texto = self.cleaned_data["texto"]
+        post.emote = self.cleaned_data["emote"]
         post.save()
         return post
+
+    def clean(self):
+        cleaned_data = super(PostForm, self).clean()
+        if "emote_id" in cleaned_data:
+            cleaned_data["emote"] = Emote.objects.get(id=cleaned_data["emote_id"])
+        return cleaned_data
