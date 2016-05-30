@@ -4,7 +4,7 @@ from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
 
-from PI_brian.app.models import Post, Emote
+from PI_brian.app.models import Post, Emote, Reply
 
 
 class PostForm(ModelForm):
@@ -20,7 +20,6 @@ class PostForm(ModelForm):
         user = User.objects.get(username=user.username)
         self.user = user
         self.fecha_creacion = timezone.now()
-        self.emote = None
 
     def save(self, commit=False):
         post = super(PostForm, self).save(commit=commit)
@@ -37,3 +36,20 @@ class PostForm(ModelForm):
         if "emote_id" in cleaned_data:
             cleaned_data["emote"] = Emote.objects.get(id=cleaned_data["emote_id"])
         return cleaned_data
+
+class RespuestaForm(PostForm):
+    post_id = forms.CharField()
+
+    class Meta:
+        model = Reply
+        fields = ["post_id", "texto"]
+
+    def save(self, commit=False):
+        reply = super(RespuestaForm, self).save(commit=commit)
+        reply.post = self.cleaned_data["post"]
+        reply.save()
+
+    def clean(self):
+        cleaned_data = super(RespuestaForm, self).clean()
+        if "post_id" in cleaned_data:
+            cleaned_data["post"] = Post.objects.get(id=self.cleaned_data["post_id"])
