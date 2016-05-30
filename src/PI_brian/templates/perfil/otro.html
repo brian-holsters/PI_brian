@@ -6,6 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
 {% endblock %}
 
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'js/getCookie.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/respuesta.js' %}" type="text/javascript"></script>
+{% endblock %}
+
 {% block contenido %}
     <div class="index">
         <div id="perfil-info">
