@@ -17,7 +17,7 @@ class Post(Model):
 
     user = ForeignKey(User, verbose_name=u"Usuario que ha publicado el post", related_name="posts")
 
-    respuesta_de = ForeignKey("self", related_name="respuestas", null=True, default=None)
+    respuesta_de = ForeignKey("self", related_name="replies", null=True, default=None)
 
     def __unicode__(self):
         return self.texto[:20] + "... Escrito por " + self.user.username

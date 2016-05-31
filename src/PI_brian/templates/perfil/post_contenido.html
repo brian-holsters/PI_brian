@@ -1,0 +1,18 @@
+<div class="post-texto">
+	{{post.texto}}
+</div>
+<div class="post-info">
+	<span class="post-time">Publicado hace {{post.tiempo_desde_creacion}}</span>
+	<span class="post-user">
+		por
+		{% if post.user.username == user.username %}
+			mi
+		{% else %}
+			{{ post.user.username }}
+		{% endif %}
+	</span>
+	<br/>
+	{% if post.es_op %}
+		<img src="{{post.emote.imagen.url}}" />
+	{% endif %}
+</div>
