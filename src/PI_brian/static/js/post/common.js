@@ -42,12 +42,12 @@ postFunction = function(formulario, respuesta_de){
 				if(respuesta_de === null){
 					$("#posts-list").prepend(data);
 				}else{
-					$lista = $(formulario).parents(".respuesta-container").siblings("ul.respuestas-lista");
+					post_id = $(formulario).data("post-id");
+					$lista = $("ul#respuestas-lista_"+post_id);
 					$lista.prepend(data);
-
-					console.log($lista.parents("div.respuestas-container"));
-
-					$lista.parents("div.respuestas-container").removeClass("hidden");
+					
+					$contenedor = $("div#respuestas_"+post_id);
+					$contenedor.removeClass("hidden");
 				}
 
 			}
