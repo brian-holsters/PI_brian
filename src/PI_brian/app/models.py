@@ -4,8 +4,9 @@ from django.db.models import Model, DateTimeField, BooleanField, CharField, Fore
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-# Create your models here.
 
+########################################################################################################################
+##
 class Post(Model):
     class Meta:
         ordering = ["fecha_creacion"]
@@ -27,6 +28,10 @@ class Post(Model):
         result = Post._parse_tiempo(tiempo)
         return result
 
+    @property
+    def es_respuesta(self):
+        return False
+
     @staticmethod
     def _parse_tiempo(tiempo):
         dias = tiempo.days
@@ -41,9 +46,19 @@ class Post(Model):
         else:
             return "un momento"
 
+
+########################################################################################################################
+##
 class Reply(Post):
     post = ForeignKey(Post, verbose_name=u"Post al que responde este", related_name="replies")
 
+    @property
+    def es_respuesta(self):
+        return True
+
+
+########################################################################################################################
+##
 class Emote(Model):
     class Meta:
         ordering = ["nombre"]

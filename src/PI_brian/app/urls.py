@@ -5,7 +5,7 @@ __author__ = 'brian'
 
 from django.conf.urls import url, include
 
-from PI_brian.app.views import auth, index, post, perfil
+from PI_brian.app.views import auth, index, post, perfil, respuesta
 
 urlpatterns= [
 	url(r'^$/?', index.index, name="index"),
@@ -17,7 +17,9 @@ urlpatterns= [
     url(r'^perfil/(?P<username>[\w\d]+)$/?', perfil.ver_perfil, name="perfil"),
 
     url(r'^post$/?', post.post, name="post"),
-    url(r'^ajax_post/?', post.ajax_post),
+    url(r'^ajax_post/?$', post.ajax_post),
+
+    url(r'^ajax_respuesta/?$', respuesta.ajax_respuesta),
 
     ## URLs de administración:
     url(r'^administracion/emotes/?$', emotes.lista, name="emotes"),

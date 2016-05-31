@@ -20,7 +20,9 @@
         </div>
         <ul id="posts-list" class="col-xs-12 col-md-6">
             {% for post in posts %}
-                {%include 'perfil/post.html' %}
+                {% if not post.es_respuesta %}
+                    {%include 'perfil/post.html' %}
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

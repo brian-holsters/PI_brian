@@ -1,0 +1,16 @@
+<li class="respuesta">
+    <div class="post-texto">
+        {{respuesta.texto}}
+    </div>
+    <div class="post-info">
+        <span class="post-time">Publicado hace {{post.tiempo_desde_creacion}}</span>
+        <span class="post-user">
+            por
+            {% if post.user.username == user.username %}
+                mi
+            {% else %}
+                {{ respuesta.user.username }}
+            {% endif %}
+        </span>
+    </div>
+</li>
