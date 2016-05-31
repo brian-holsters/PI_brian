@@ -17,8 +17,15 @@ class Post(Model):
 
     user = ForeignKey(User, verbose_name=u"Usuario que ha publicado el post", related_name="posts")
 
+    respuesta_de = ForeignKey("self", related_name="respuestas", null=True, default=None)
+
     def __unicode__(self):
         return self.texto[:20] + "... Escrito por " + self.user.username
+
+    # devuelve True si este post es un "original post", es decir, no es respuesta de ningún otro post
+    @property
+    def es_op(self):
+        return self.respuesta_de is None
 
     @property
     def tiempo_desde_creacion(self):
@@ -41,8 +48,6 @@ class Post(Model):
         else:
             return "un momento"
 
-class Reply(Post):
-    post = ForeignKey(Post, verbose_name=u"Post al que responde este", related_name="replies")
 
 class Emote(Model):
     class Meta:
