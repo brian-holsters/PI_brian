@@ -17,7 +17,7 @@
             </ul>
         </div>
         <!-- RESPONDER (solo si no eres el propietario del perfil) -->
-        {% if post.user.username != user.username %}
+        {% if user.is_authenticated and post.user.username != user.username %}
             <button data-post-id="{{post.id}}" class="btn btn-default">Responder</button>
             <div data-post-id="{{post.id}}" class="hidden respuesta-container">
                 <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
