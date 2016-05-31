@@ -15,8 +15,44 @@ function getCookie(name) {
 }
 
 
+/*RESPUESTA ABSTRACTA*/
+postFunction = function(formulario, respuesta_de){
+	var csrftoken = getCookie('csrftoken');
+	formulario.action = window.location.protocol + "//" + window.location.host + "/ajax_post";
+
+	if(formulario.texto.value){
+		/*Composición de la petición POST*/
+		var post_data = {
+			"texto" : formulario.texto.value,
+			"csrfmiddlewaretoken" : csrftoken
+		};
+		if (respuesta_de !== null){
+			console.log("es respuesta");
+			console.log(respuesta_de);
+			post_data["respuesta_de"] = respuesta_de;
+		}else{
+			console.log("es post original");
+			post_data["emote_id"]= formulario.emote_id.value
+		}
+		
+		/*petición POST*/
+		$.post(formulario.action, post_data, function(data, textStatus, jqXHR){
+			if (textStatus === "success"){
+				/*comportamiento según se trate de un post original o una respuesta*/
+				if(respuesta_de === null){
+					$("#posts-list").prepend(data);
+				}else{
+					console.log("se ha guardado una respuesta");
+				}
+				
+			}
+		});
+		formulario.texto.value="";
+	}
+}
+
 $(document).ready(function(){
-    /*SELECCION DE EMOTE*/
+	/*SELECCION DE EMOTE*/
 	var $botones_emote = $("a[data-emote_id]");
 	var $hidden_emote = $("#hidden_emote");
 	var $emote_selector_imagen = $("img.emote-selector-imagen");
@@ -28,28 +64,30 @@ $(document).ready(function(){
 		
 		$emote_selector_imagen.attr("src", emote_src);
     });
+	
+	/*PUBLICAR POST PROPIO*/
+	$("#post-form form").submit(function(event){
+		event.preventDefault();
+		postFunction(this, null);
+	});
+
+
+	/* BOTON RESPONDER*/
+	var $botones_responder = $("button[data-post-id]");
+	$botones_responder.click(function(){
+		$(this).siblings("div[data-post-id]").toggleClass("hidden");
+	});
+	
+	/*RESPONDER A UN POST*/
+	var $formularios = $("form[data-post-id]");
+	$formularios.submit(function(event){
+		event.preventDefault();
+		postFunction(this, $(this).data("post-id"));
+	});
+
+	
+    
 
 	/*PROCESO AJAX*/
-	$("#post-form form").submit(function(event){
-		var csrftoken = getCookie('csrftoken');
-		event.preventDefault();
-		this.action = window.location.protocol + "//" + window.location.host + "/ajax_post";
-
-		if(this.texto.value){
-			$.post(
-				this.action,
-				{
-					"texto" : this.texto.value,
-					"csrfmiddlewaretoken" : csrftoken,
-					"emote_id": this.emote_id.value
-				},
-				function(data, textStatus, jqXHR){
-					if (textStatus === "success"){
-						$("#posts-list").prepend(data);
-					}
-				}
-			);
-			this.texto.value="";
-		}
-	});
+	
 });

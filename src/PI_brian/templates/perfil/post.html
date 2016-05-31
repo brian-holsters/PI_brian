@@ -15,5 +15,11 @@
         <img src="{{post.emote.imagen.url}}" />
     </div>
     <!-- AQUI VAN LAS RESPUESTAS -->
-
+    <button data-post-id="{{post.id}}" class="btn btn-default">Responder</button>
+    <div data-post-id="{{post.id}}" class="hidden respuesta-container">
+        <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
+            <input name="texto" type="text" class="repuesta-texto">
+            <input type="submit" value="Responder">
+        </form>
+    </div>
 </li>

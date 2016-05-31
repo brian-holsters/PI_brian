@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from PI_brian.app.forms.post import PostForm
+from PI_brian.app.models import Post
 
 
 def post(request):
@@ -24,11 +25,19 @@ def ajax_post(request):
     user = request.user
     if request.method == "POST":
         print request.POST
-        form = PostForm(user, request.POST)
+        respuesta_de = None
+        if "respuesta_de" in request.POST:
+            op = Post.objects.get(id=request.POST["respuesta_de"])
+            respuesta_de = op
+
+        form = PostForm(user, respuesta_de, request.POST)
         if form.is_valid():
             saved_post = form.save()
-            return render_to_response("perfil/post.html", {"post":saved_post}, RequestContext(request))
+            if respuesta_de:
+                return render_to_response("perfil/post.html", {"post":saved_post}, RequestContext(request))
+            else:
+                return render_to_response("perfil/post.html", {"post":saved_post}, RequestContext(request))
         print form.errors
         raise Exception("formulario no válido|{0}".format(form.errors))
-    else:
-        raise Exception("Petición no es por POST")
+
+    raise Exception("Petición no es por POST")
