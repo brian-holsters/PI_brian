@@ -60,3 +60,10 @@ size-90{
 full-width, size-100{
     width:100%;
 }
+/*float*/
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}

@@ -5,21 +5,26 @@
     <!-- AQUI VAN LAS RESPUESTAS -->
     {% if post.es_op %}
         <!-- LISTA DE RESPUESTAS -->
-        <button onclick="$('.respuestas-lista').toggleClass('hidden');" class="btn btn-default">Respuestas</button>
-        <ul class="hidden respuestas-lista">
-            {% for respuesta in post.respuestas %}
-                <li>
-                    {% include 'perfil/post_contenido.html' with post=respuesta %}
-                </li>
-            {% endfor %}
-        </ul>
-        <!-- RESPONDER -->
-        <button data-post-id="{{post.id}}" class="btn btn-default">Responder</button>
-        <div data-post-id="{{post.id}}" class="hidden respuesta-container">
-            <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
-                <input name="texto" type="text" class="repuesta-texto">
-                <input type="submit" value="Responder">
-            </form>
+
+        <div class="respuestas-container{% if post.respuestas|length == 0 %} hidden{% endif %}">
+            <button onclick="$(this).siblings('.respuestas-lista').toggleClass('hidden');" class="btn btn-default">Respuestas</button>
+            <ul class="hidden respuestas-lista">
+                {% for respuesta in post.respuestas %}
+                    <li>
+                        {% include 'perfil/post_contenido.html' with post=respuesta %}
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+        <!-- RESPONDER (solo si no eres el propietario del perfil) -->
+        {% if post.user.username != user.username %}
+            <button data-post-id="{{post.id}}" class="btn btn-default">Responder</button>
+            <div data-post-id="{{post.id}}" class="hidden respuesta-container">
+                <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
+                    <input name="texto" type="text" class="repuesta-texto">
+                    <input type="submit" value="Responder">
+                </form>
+            </div>
+        {% endif %}
     {% endif %}
 </li>

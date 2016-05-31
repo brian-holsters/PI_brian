@@ -42,7 +42,12 @@ postFunction = function(formulario, respuesta_de){
 				if(respuesta_de === null){
 					$("#posts-list").prepend(data);
 				}else{
-					console.log("se ha guardado una respuesta");
+					$lista = $(formulario).parents(".respuesta-container").siblings("ul.respuestas-lista");
+					$lista.prepend(data);
+					
+					console.log($lista.parents("div.respuestas-container"));
+					
+					$lista.parents("div.respuestas-container").removeClass("hidden");
 				}
 				
 			}
@@ -71,23 +76,18 @@ $(document).ready(function(){
 		postFunction(this, null);
 	});
 
-
-	/* BOTON RESPONDER*/
-	var $botones_responder = $("button[data-post-id]");
-	$botones_responder.click(function(){
-		$(this).siblings("div[data-post-id]").toggleClass("hidden");
-	});
-	
-	/*RESPONDER A UN POST*/
-	var $formularios = $("form[data-post-id]");
-	$formularios.submit(function(event){
-		event.preventDefault();
-		postFunction(this, $(this).data("post-id"));
-	});
-
-	
-    
-
-	/*PROCESO AJAX*/
-	
+	function asimilar_botones(){
+		/* BOTON RESPONDER*/
+		var $botones_responder = $("button[data-post-id]");
+		$botones_responder.click(function(){
+			$(this).siblings("div[data-post-id]").toggleClass("hidden");
+		});
+		
+		/*RESPONDER A UN POST*/
+		var $formularios = $("form[data-post-id]");
+		$formularios.submit(function(event){
+			event.preventDefault();
+			postFunction(this, $(this).data("post-id"));
+		});
+	}
 });
