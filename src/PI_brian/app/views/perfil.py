@@ -24,11 +24,13 @@ def ver_propio_perfil(request):
     form = PostForm(usuario)
     posts = usuario.posts.filter().order_by("-fecha_creacion")
     for post in posts:
-        post.respuestas = Post.objects.filter(respuesta_de=post.id)
+        post.respuestas = Post.objects.filter(respuesta_de=post.id).order_by("-fecha_creacion")
     replacements = {"posts": posts, "form": form, "valor_aceptar": "Publicar", "ocultar_cancelar": True, "emotes" : emotes}
     return render_to_response("perfil/propio.html", replacements, RequestContext(request))
 
 
 def ver_otro_perfil(request, propietario):
     posts = propietario.posts.filter().order_by("-fecha_creacion")
+    for post in posts:
+        post.respuestas = Post.objects.filter(respuesta_de=post.id).order_by("-fecha_creacion")
     return render_to_response("perfil/otro.html", {"posts":posts, "propietario":propietario}, RequestContext(request))
