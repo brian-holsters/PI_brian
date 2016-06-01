@@ -5,6 +5,10 @@
             <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"></a>
         </div>
     </div>
+    <select id="select2-buscador-usuarios">
+        <option value="3620194" selected="selected">hola amigos</option>
+    </select>
+
     {% if user.is_staff %}
         <div class="cabecera-admin">
             <nav class="navbar navbar-default">

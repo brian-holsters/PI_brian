@@ -5,7 +5,7 @@ __author__ = 'brian'
 
 from django.conf.urls import url, include
 
-from PI_brian.app.views import auth, index, post, perfil
+from PI_brian.app.views import auth, index, post, perfil, api
 
 urlpatterns= [
 	url(r'^$/?', index.index, name="index"),
@@ -23,4 +23,7 @@ urlpatterns= [
     url(r'^administracion/emotes/?$', emotes.lista, name="emotes"),
     url(r'^administracion/emotes/nuevo/?$', emotes.nuevo, name="nuevo_emote"),
     url(r'^administracion/emotes/(?P<emote_id>[\d]+)/editar/?$', emotes.editar, name="editar_emote"),
+
+    #API:
+    url(r'^buscador-usuarios/json$', api.buscar_usuario, name="buscar_usuarios")
 ]
