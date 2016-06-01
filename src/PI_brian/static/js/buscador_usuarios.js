@@ -44,5 +44,4 @@ $(document).ready(function(){
             return cosas.nombre || "Buscar Usuario";
         },
     });
-    console.log($("#select2-buscador-usuarios").select2("container"));
 });

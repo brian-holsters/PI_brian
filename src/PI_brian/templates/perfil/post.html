@@ -7,7 +7,7 @@
         <!-- LISTA DE RESPUESTAS -->
 
         <div id="respuestas_{{post.id}}" class="{% if post.respuestas|length == 0 %}hidden{% endif %}">
-            <button onclick="$('#respuestas-lista_{{post.id}}').toggleClass('hidden');" class="btn btn-default">Respuestas</button>
+            <button onclick="$('#respuestas-lista_{{post.id}}').toggleClass('hidden');" class="btn btn-orange">Respuestas</button>
             <ul id="respuestas-lista_{{post.id}}" class="hidden">
                 {% for respuesta in post.respuestas %}
                     <li>
@@ -18,7 +18,7 @@
         </div>
         <!-- RESPONDER (solo si no eres el propietario del perfil) -->
         {% if user.is_authenticated and post.user.username != user.username %}
-        <button data-post-id="{{post.id}}" class="btn btn-default">Responder</button>
+        <button data-post-id="{{post.id}}" class="btn btn-orange">Responder</button>
         <div data-post-id="{{post.id}}" class="hidden respuesta-container">
             <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
                 <input name="texto" type="text" class="repuesta-texto">

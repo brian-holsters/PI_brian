@@ -67,3 +67,14 @@ full-width, size-100{
 .right{
     float: right;
 }
+/* Botones */
+.btn-orange{
+    background-color: #fff;
+    color: #333;
+    border-color: #ccc;
+}
+.btn-orange:hover{
+    background-color: #FFA500;
+    color: #fff;
+    border-color: #fff;
+}

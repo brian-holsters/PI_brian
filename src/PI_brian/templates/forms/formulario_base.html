@@ -27,8 +27,8 @@
 {% endfor %}
 <div class="form-actions">
     {# BOTONES! #}
-    <input class="btn btn-default" type="submit" value="{{valor_aceptar|default:'Guardar'}}" name="guardar" id="guardar">
+    <input class="btn btn-orange" type="submit" value="{{valor_aceptar|default:'Guardar'}}" name="guardar" id="guardar">
     {% if not ocultar_cancelar %}
-        <input class="btn btn-default" type="submit" value="{{valor_cancelar|default:'Cancelar'}}" name="cancelar" id="cancelar">
+        <input class="btn btn-orange" type="submit" value="{{valor_cancelar|default:'Cancelar'}}" name="cancelar" id="cancelar">
     {% endif %}
 </div>
