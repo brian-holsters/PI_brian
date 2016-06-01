@@ -3,6 +3,7 @@ $(document).ready(function(){
         ajax: {
             url : url_buscador, //esto se recibe desde la plantilla!
             dataType : "json",
+            method: "get",
             delay: 250,
             data : function(params){
                 return {
@@ -32,11 +33,16 @@ $(document).ready(function(){
         templateResult: function(object){
             console.log("templateResult");
             console.log(object);
-            return object.nombre;
+            if(object.nombre){
+                return "<a class='block-link' href='/perfil/" + object.nombre + "'><span>" + object.nombre + "</span></a>";
+            }
+            return "buscando";
         },
-        templateSelection: function(){
+        templateSelection: function(cosas){
             console.log("templateSelection");
-            return "Buscar Usuarios";
+            console.log(cosas);
+            return cosas.nombre || "Buscar Usuario";
         },
     });
+    console.log($("#select2-buscador-usuarios").select2("container"));
 });

@@ -75,3 +75,25 @@
     height: 40px;
     background-color: #00F;
 }
+.select2-results__option{
+    padding: 0;
+}
+li.select2-results__option:hover {
+    background-color: orange;
+    color: white;
+}
+.block-link{
+    display:block;
+    width: 100%;
+    height: 100%;
+}
+.select2-results__option .block-link{
+    padding: 6px;
+    color: inherit;
+}
+li.select2-results__option:hover .block-link{
+    text-decoration: none;
+}
+.select2-results__message{
+    padding: 6px;
+}
