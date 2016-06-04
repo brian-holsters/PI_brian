@@ -97,3 +97,6 @@ ENV/
 *.pyc
 # MEDIA FILES:
 src/media/*
+
+# private settings:
+src/PI_brian/private_settings.py

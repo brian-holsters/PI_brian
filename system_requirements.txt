@@ -1,0 +1,6 @@
+dependencias de sistema para ubuntu 16.04:
+servidor LAMP
+
+conexión a BD:
+    apt-get install libmysqlclient-dev
+    apt-get install python-dev
