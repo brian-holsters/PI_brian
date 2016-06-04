@@ -17,12 +17,6 @@
         <div id="post-form" class="col-xs-12 col-md-6">
             {% include 'forms/post_form.html' %}
         </div>
-        <ul id="posts-list" class="col-xs-12 col-md-6">
-            {% for post in posts %}
-                {% if post.es_op %}
-                    {% include 'perfil/post.html' %}
-                {% endif %}
-            {% endfor %}
-        </ul>
+        {% include 'perfil/post-list.html' %}
     </div>
 {% endblock %}

@@ -29,13 +29,7 @@
             </span>
         </div>
         <div id="posts-container">
-            <ul id="posts-list" class="col-xs-12 col-md-6 right">
-                {% for post in posts %}
-                    {% if post.es_op %}
-                        {%include 'perfil/post.html' %}
-                    {% endif %}
-                {% endfor %}
-            </ul>
+            {% include 'perfil/post-list.html' %}
         </div>
     </div>
 {% endblock %}

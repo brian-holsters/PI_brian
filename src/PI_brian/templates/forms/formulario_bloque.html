@@ -1,0 +1,31 @@
+{% load static from staticfiles %}
+{% load widget_tweaks %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+
+{% csrf_token %}
+<div class="well">
+    {% if title %}
+        <div class="form_title">
+            <h2>{{title}}</h2>
+        </div>
+    {% endif %}
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields  %}
+        <hr>
+        <label for="{{field.auto_id}}">{{field.label}}</label>
+        {{ field|add_class:"form-control" }}
+    {% endfor %}
+
+
+    <div class="form-actions">
+        {# BOTONES! #}
+        <input class="btn btn-orange" type="submit" value="{{valor_aceptar|default:'Guardar'}}" name="guardar" id="guardar">
+        {% if not ocultar_cancelar %}
+            <input class="btn btn-orange" type="submit" value="{{valor_cancelar|default:'Cancelar'}}" name="cancelar" id="cancelar">
+        {% endif %}
+    </div>
+</div>

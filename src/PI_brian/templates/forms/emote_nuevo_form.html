@@ -1,4 +1,3 @@
 <form method="post" action="{% url 'nuevo_emote' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% include 'forms/formulario_base.html' %}
+    {% include 'forms/formulario_bloque.html' with title="Nuevo Emote" %}
 </form>

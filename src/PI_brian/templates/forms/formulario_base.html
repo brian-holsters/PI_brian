@@ -1,6 +1,9 @@
 {% load static from staticfiles %}
 {% load widget_tweaks %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+
+{% csrf_token %}
+
 {% if form.title %}
     <div class="form_title">
         {{form.title}}
