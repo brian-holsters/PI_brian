@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from PI_brian import private_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +23,10 @@ DJANGO_SETTINGS_MODULE = os.path.join(BASE_DIR)
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l-44xs0br+1keyav$j7=hlm%mfmcpahs8*=ai_t!wz)j^fm8fr'
+SECRET_KEY = private_settings.SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = private_settings.DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -85,10 +86,22 @@ WSGI_APPLICATION = 'PI_brian.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': private_settings.DB_NAME,
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': private_settings.BD_USERNAME,
+        'PASSWORD': private_settings.DB_PASSWORD,
+        'HOST' : private_settings.DB_HOST,
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
 
@@ -115,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
