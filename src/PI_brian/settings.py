@@ -23,10 +23,10 @@ DJANGO_SETTINGS_MODULE = os.path.join(BASE_DIR)
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l-44xs0br+1keyav$j7=hlm%mfmcpahs8*=ai_t!wz)j^fm8fr'
+SECRET_KEY = private_settings.SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = private_settings.DEBUG
 
 ALLOWED_HOSTS = []
 
