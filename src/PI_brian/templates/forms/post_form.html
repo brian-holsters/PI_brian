@@ -2,26 +2,25 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 
-<div class="post-form-container">
+<div class="post-form-container inline">
     <form method="post" action="{% url 'post' %}">
         {% csrf_token %}
-            <div class="dropdown emote-selector-container">
-                <button class="dropdown-toggle emote-selector" type="button" data-toggle="dropdown">
-                    <!--<span class="glyphicon glyphicon-triangle-bottom"></span>-->
-                    <img class="emote-selector-imagen" src="{% static 'img/boton_emote.png' %}" />
-                </button>
-                <ul class="dropdown-menu table-dropdown">
-                    {% for emote in emotes %}
-                        <li class="cell">
-                            <a data-emote_id="{{emote.id}}" href="#"><img class="emote-selector-imagen" src="{{emote.imagen.url}}"/></a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <input id="hidden_emote" type="hidden" name="emote_id" value="1">
+        <input id="hidden_emote" type="hidden" name="emote_id" value="0">
 
-            <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
 
-            <button type="submit" name="guardar" class="btn btn-orange post-button">Publicar</button>
+        <div class="dropdown emote-selector-container">
+            <button class="dropdown-toggle emote-selector" type="button" data-toggle="dropdown">
+                <img class="emote-selector-imagen" src="{% static 'img/boton_emote.png' %}" />
+            </button>
+            <ul class="dropdown-menu table-dropdown">
+                {% for emote in emotes %}
+                    <li class="cell">
+                        <a data-emote_id="{{emote.id}}" href="#"><img class="emote-selector-imagen" src="{{emote.imagen.url}}"/></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <textarea class="form-control" maxlength="200" name="texto" id="post-textarea" ></textarea>
+        <button type="submit" name="guardar" class="btn btn-orange post-button">Publicar</button>
     </form>
 </div>

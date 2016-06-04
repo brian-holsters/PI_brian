@@ -25,11 +25,6 @@ textarea{
     max-width: 100%;
     max-height: 100%;
 }
-#post-textarea{
-    height: 100px;
-    width: 100%;
-    resize: none;
-}
 
 /*CAJA DE SELECCION DE EMOTE: */
 
@@ -63,39 +58,7 @@ textarea{
     padding: 0;
 }
 
-.post-container{
-    background-color: #f00;
-    padding: 2.5%;
-    overflow:hidden;
-    width: auto;
-}
 
-#post-textarea {
-    max-width: 300px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.post-button {
-    margin-top: 25px;
-    height: 50px;
-    width: 100px;
-}
-
-.post-form-container{
-    text-align:right;
-    vertical-align: middle;
-}
-
-.emote-selector-container, #post-textarea, .post-button{
-    display: inline-block;
-    float: none;
-}
-
-.emote-selector-container, .post-button{
-    margin-top: -100px;
-    top: -50px;
-}
  .form-bloque{
     margin-top: 40px;
  }
@@ -106,6 +69,54 @@ textarea{
 
 .form_title{
     text-align: center;
+}
+
+.inline{
+    display: inline;
+}
+
+/*** post-form ***/
+#post-form{
+    text-align: center;
+}
+
+.emote-selector-container{}
+
+#post-textarea{
+    max-width: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 100px;
+    width: 100%;
+    resize: none;
+}
+
+.post-button{}
+
+
+
+.post-container{
+    background-color: #f00;
+    padding: 2.5%;
+    overflow:hidden;
+    width: auto;
+}
+
+.post-button {
+    margin-top: 25px;
+    height: 50px;
+    width: 90px;
+    padding: 0;
+}
+
+.emote-selector-container, #post-textarea, .post-button{
+    display: inline-block;
+    float: none;
+}
+
+.emote-selector-container, .post-button{
+    margin-top: -100px;
+    top: -50px;
 }
 
 @media (max-width: 992px){

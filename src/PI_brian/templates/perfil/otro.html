@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block contenido %}
-    <div class="index">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 index">
+        {% comment %}
+        <!--
         <div id="perfil-info">
             <span class="block perfil-info" id="perfil-nombre">
                 <a href="{% url 'perfil' username=propietario.username %}">
@@ -28,6 +30,8 @@
                 {{propietario.posts.count}}
             </span>
         </div>
+        -->
+        {% endcomment %}
         <div id="posts-container">
             {% include 'perfil/post-list.html' %}
         </div>

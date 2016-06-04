@@ -1,9 +1,3 @@
-
-#posts-container{
-    margin-top: 30px;
-    list-style: none;
-}
-
 #perfil-info{
     overflow-y: scroll;
     min-height: 100%;
@@ -16,23 +10,94 @@
     padding-left: 20px;
     padding-top: 20px;
 }
-#posts-list li{
-    display: block;
-    width: 100%;
-    min-height: 80px;
-    margin: 10px auto;
 
-    background-color: #fff;
-    border: 4px solid #efefef;
-    border-radius: 4px;
-}
-#posts-list li:first-child{
-    margin-top: 0;
-}
 span.perfil-info a{
     text-decoration: none;
     color: inherit;
 }
 span.perfil-info a:hover{
     font-weight: bold;
+}
+
+#posts-container{
+    margin-top: 30px;
+    list-style: none;
+}
+
+/* posts */
+
+.post-list-element{
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    margin: 10px auto;
+    text-align: center;
+    /*vertical-align: middle;*/
+}
+.post-list-element:first-child{
+    margin-top: 0;
+}
+
+.post-emote-container{
+    top: -50px;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    border-radius: 4px;
+    padding: 2.5px;
+    background-color: #fff;
+    border: 0;
+    text-align: left;
+    border: 2.5px solid #efefef;
+}
+.post-emote-container img{
+    width: 40px;
+    height: 40px;
+}
+.post-contenido{
+    text-align: left;
+    display: inline-block;
+    background-color: #fff;
+    max-width: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.respuestas-invisible{
+    display: inline-block;
+    height: 10px;
+    width: 90px;
+}
+.respuestas-toggle{
+    top: -50px;
+    position: relative;
+    top: -50px;
+    display: inline-block;
+    float: none;
+    height: 50px;
+    width: 90px;
+    padding: 0;
+}
+.post-texto{
+    min-height: 100px;
+}
+.post-info{
+    border-top: 1px solid #aaa;
+}
+
+.respuestas{
+    list-style: none;
+    text-align: right;
+}
+.respuestas li{
+    display: inline-block;
+    text-align: left;
+    max-width: 300px;
+    width: 100%;
+}
+
+.respuestas .post-texto{
+    min-height: 0;
 }

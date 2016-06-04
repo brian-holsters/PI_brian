@@ -1,25 +1,31 @@
-<li>
-    {% include 'perfil/post_contenido.html' %}
-
+<li class="post-list-element">
+    {% if post.es_op %}
+    <div class="post-emote-container">
+        <img src="{{post.emote.imagen.url}}" />
+    </div>
+	{% endif %}
+    <div class="post-contenido">
+        {% include 'perfil/post_contenido.html' %}
+    </div>
 
     <!-- AQUI VAN LAS RESPUESTAS -->
     {% if post.es_op %}
         <!-- LISTA DE RESPUESTAS -->
+        <div class="respuestas-invisible {% if post.respuestas|length != 0 or user != post.user %}hidden{% endif %}"></div>
+        <button onclick="$('#respuestas-lista_{{post.id}}').toggleClass('hidden');" class="btn btn-orange respuestas-toggle {% if post.respuestas|length == 0 %}hidden{% endif %}">Respuestas</button>
+        <ul id="respuestas-lista_{{post.id}}" class="hidden respuestas">
+            {% for respuesta in post.respuestas %}
+                <li>
+                    {% include 'perfil/post_contenido.html' with post=respuesta %}
+                </li>
+            {% endfor %}
+        </ul>
 
-        <div id="respuestas_{{post.id}}" class="{% if post.respuestas|length == 0 %}hidden{% endif %}">
-            <button onclick="$('#respuestas-lista_{{post.id}}').toggleClass('hidden');" class="btn btn-orange">Respuestas</button>
-            <ul id="respuestas-lista_{{post.id}}" class="hidden">
-                {% for respuesta in post.respuestas %}
-                    <li>
-                        {% include 'perfil/post_contenido.html' with post=respuesta %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+
         <!-- RESPONDER (solo si no eres el propietario del perfil) -->
         {% if user.is_authenticated and post.user.username != user.username %}
-        <button data-post-id="{{post.id}}" class="btn btn-orange">Responder</button>
-        <div data-post-id="{{post.id}}" class="hidden respuesta-container">
+            <button data-post-id="{{post.id}}" class="btn btn-orange respuestas-toggle">Responder</button>
+            <div data-post-id="{{post.id}}" class="hidden respuesta-container">
             <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
                 <input name="texto" type="text" class="repuesta-texto">
                 <input type="submit" value="Responder">
