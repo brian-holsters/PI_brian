@@ -49,7 +49,6 @@ postFunction = function(formulario, respuesta_de){
 					$contenedor = $("div#respuestas_"+post_id);
 					$contenedor.removeClass("hidden");
 				}
-
 			}
 		});
 		formulario.texto.value="";
