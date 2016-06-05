@@ -39,7 +39,9 @@ span.perfil-info a:hover{
 }
 
 .post-emote-container{
-    top: -50px;
+    top: 35px;
+    left: 10%;
+    float: left;
     position: relative;
     display: inline-block;
     height: 50px;
@@ -65,21 +67,17 @@ span.perfil-info a:hover{
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.respuestas-invisible{
-    display: inline-block;
-    height: 10px;
-    width: 90px;
-}
-.respuestas-toggle{
-    top: -50px;
+.responder-toggle{
+    top: 35px;
+    right: 10%;
     position: relative;
-    top: -50px;
     display: inline-block;
-    float: none;
+    float: right;
     height: 50px;
     width: 90px;
     padding: 0;
 }
+
 .post-texto{
     min-height: 100px;
 }
@@ -87,6 +85,34 @@ span.perfil-info a:hover{
     border-top: 1px solid #aaa;
 }
 
+.respuestas-container{
+
+}
+
+.respuestas-toggle{
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-radius: 0;
+}
+.respuesta{
+    list-style: none;
+    border-top: 1px solid orange;
+    padding: 5px;
+}
+.respuesta .post-texto{
+    min-height: 0;
+}
+.post-info{
+    color: #666;
+}
+
+.respuestas-invisible{
+    display: inline-block;
+    height: 10px;
+    width: 90px;
+}
+/*
 .respuestas{
     list-style: none;
     text-align: right;
@@ -101,3 +127,8 @@ span.perfil-info a:hover{
 .respuestas .post-texto{
     min-height: 0;
 }
+
+
+
+
+*/

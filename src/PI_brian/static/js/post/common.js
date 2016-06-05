@@ -44,7 +44,7 @@ postFunction = function(formulario, respuesta_de){
 				}else{
 					post_id = $(formulario).data("post-id");
 					$lista = $("ul#respuestas-lista_"+post_id);
-					$lista.prepend(data);
+					$lista.prepend("<li class='respuesta'>"+data+"</li>");
 					
 					$contenedor = $("div#respuestas_"+post_id);
 					$contenedor.removeClass("hidden");

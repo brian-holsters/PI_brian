@@ -31,10 +31,11 @@ def ajax_post(request):
             respuesta_de = op
 
         form = PostForm(user, respuesta_de, request.POST)
-        if form.is_valid():
-            saved_post = form.save()
-            return render_to_response("perfil/post.html", {"post":saved_post}, RequestContext(request))
-        print form.errors
-        raise Exception("formulario no válido|{0}".format(form.errors))
+        if not form.is_valid():
+            raise Exception("formulario no válido|{0}".format(form.errors))
+        saved_post = form.save()
+        if not saved_post.respuesta_de:
+            return render_to_response("perfil/post.html", {"post": saved_post}, RequestContext(request))
+        return render_to_response("perfil/post_contenido.html", {"post": saved_post}, RequestContext(request))
 
     raise Exception("Petición no es por POST")
