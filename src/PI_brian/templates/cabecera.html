@@ -5,32 +5,34 @@
             <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"></a>
         </div>
     </div>
-    {# Buscador de usuarios #}
-    <select id="select2-buscador-usuarios">
-        <option>Activa javascript!</option>
-    </select>
 
-    {% if user.is_staff %}
-        <div class="cabecera-admin">
+
+
+        <div class="cabecera-nav">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-
+                    {% if user.is_staff %}
                     <div class="navbar-header">
                       <span class="navbar-brand" href="#">Administración</span>
                     </div>
-
+                    {% endif %}
                     <ul class="nav navbar-nav">
+                        {% if user.is_staff %}
                         <li class="nav-element">
                             <a href="{% url 'emotes' %}">Emotes</a>
                         </li>
-                        <li class="nav-element">
-                            <a href="#">Sanciones</a>
+                        {% endif %}
+                        <li>
+                            {# Buscador de usuarios #}
+                            <select id="select2-buscador-usuarios">
+                                <option>Activa javascript!</option>
+                            </select>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
-    {% endif %}
+
     <div class="cabecera-usuario">
         {% if user.is_authenticated %}
             <div class="usuario">

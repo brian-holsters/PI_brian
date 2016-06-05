@@ -12,10 +12,13 @@
     padding-left: 10px;
     padding-top: 10px;
 }
-.cabecera-admin{
+.cabecera-nav{
     width: 50%;
     height: 100%;
     float: left;
+}
+.cabecera-nav .select2-selection, .select2-search__field{
+    border-color: orange!important;
 }
 .cabecera-usuario{
     width: 25%;
