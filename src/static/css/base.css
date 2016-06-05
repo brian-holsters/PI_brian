@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+p{
+    text-align: justify;
+}
+html{
+    background: url('../img/fondo.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#bodycontent{
+    /*este margen tiene que ser igual que la altura de la cabecera*/
+    margin-top: 60px;
+}
+section{
+    border-bottom: 1px solid black;
+}
+
+
+.block{
+    display: block;
+}
+.center-box{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*Anchuras: */
+.size-10{
+    width:10%;
+}
+.size-20{
+    width:20%;
+}
+.size-30{
+    width:30%;
+}
+.size-40{
+    width:40%;
+}
+.size-50{
+    width:50%;
+}
+.size-60{
+    width:60%;
+}
+.size-70{
+    width:70%;
+}
+.size-80{
+    width:80%;
+}
+size-90{
+    width:90%;
+}
+full-width, size-100{
+    width:100%;
+}
+/*float*/
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+/* Botones */
+.btn-orange{
+    background-color: #fff;
+    color: #333;
+    border-color: #ccc;
+}
+.btn-orange:hover{
+    background-color: #FFA500;
+    color: #fff;
+    border-color: #fff;
+}

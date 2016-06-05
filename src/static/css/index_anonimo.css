@@ -1,0 +1,25 @@
+/*
+ffb879
+ff7900
+*/
+section{
+    padding: 100px 20px;
+}
+.index-anonimo .registro{
+    border: 4px solid #efefef;
+    border-radius: 4px;
+    padding: 30px 10px;
+    background-color: #fff;
+}
+.index-anonimo .detalles{
+    border: 4px solid #efefef;
+    border-radius: 4px;
+    padding: 30px 10px;
+    background-color: #fff;
+}
+.index-anonimo .detalles p{
+
+}
+#bodycontent{
+    padding: 100px 20px;
+}

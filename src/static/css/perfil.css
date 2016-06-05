@@ -1,0 +1,121 @@
+#perfil-info{
+    overflow-y: scroll;
+    min-height: 100%;
+    width: 20%;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    border-right: 4px solid #efefef;
+    background: #fff;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+span.perfil-info a{
+    text-decoration: none;
+    color: inherit;
+}
+span.perfil-info a:hover{
+    font-weight: bold;
+}
+
+#posts-container{
+    margin-top: 30px;
+    list-style: none;
+}
+
+/* posts */
+
+.post-list-element{
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    margin: 10px auto;
+    text-align: center;
+}
+.post-list-element:first-child{
+    margin-top: 0;
+}
+
+.post-emote-container{
+    top: 35px;
+    left: 10%;
+    float: left;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    border-radius: 4px;
+    padding: 2.5px;
+    background-color: #fff;
+    border: 0;
+    text-align: left;
+    border: 2.5px solid #efefef;
+}
+.post-emote-container img{
+    width: 40px;
+    height: 40px;
+}
+.post-contenido{
+    text-align: left;
+    display: inline-block;
+    background-color: #fff;
+    max-width: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.responder-toggle{
+    top: 35px;
+    right: 10%;
+    position: relative;
+    display: inline-block;
+    float: right;
+    height: 50px;
+    width: 90px;
+    padding: 0;
+}
+
+.post-texto{
+    min-height: 100px;
+}
+.post-info{
+    border-top: 1px solid #aaa;
+}
+
+
+/* respuestas */
+
+.respuestas-toggle{
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-radius: 0;
+}
+.respuesta{
+    list-style: none;
+    border-top: 1px solid orange;
+    padding: 5px;
+}
+.respuesta .post-texto{
+    min-height: 0;
+}
+.post-info{
+    color: #666;
+}
+
+.respuestas-invisible{
+    display: inline-block;
+    height: 10px;
+    width: 90px;
+}
+
+/* responder */
+.responder-container{
+    text-align: center;
+}
+.respuesta-texto{
+    width: 100%;
+    text-align: left;
+}

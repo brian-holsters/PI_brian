@@ -6,3 +6,16 @@ Módulo de apache:
 conexión a BD:
     apt-get install libmysqlclient-dev
     apt-get install python-dev
+
+-----------------------------------------------------------------------
+Configuración apache:
+
+archivo 'httpd.conf':
+WSGIScriptAlias / /path/to/mysite.com/mysite/wsgi.py
+WSGIPythonPath /path/to/mysite.com
+
+<Directory /path/to/mysite.com/mysite>
+    <Files wsgi.py>
+        Require all granted
+    </Files>
+</Directory>
