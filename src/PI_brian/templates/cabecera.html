@@ -7,7 +7,7 @@
     </div>
 
 
-
+    {% if user.is_authenticated %}
         <div class="cabecera-nav">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -22,7 +22,7 @@
                             <a href="{% url 'emotes' %}">Emotes</a>
                         </li>
                         {% endif %}
-                        <li>
+                        <li class="nav-element buscador">
                             {# Buscador de usuarios #}
                             <select id="select2-buscador-usuarios">
                                 <option>Activa javascript!</option>
@@ -32,7 +32,7 @@
                 </div>
             </nav>
         </div>
-
+    {% endif %}
     <div class="cabecera-usuario">
         {% if user.is_authenticated %}
             <div class="usuario">

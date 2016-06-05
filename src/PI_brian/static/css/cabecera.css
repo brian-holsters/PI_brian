@@ -20,6 +20,10 @@
 .cabecera-nav .select2-selection, .select2-search__field{
     border-color: orange!important;
 }
+li.buscador{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .cabecera-usuario{
     width: 25%;
     height: 100%;
