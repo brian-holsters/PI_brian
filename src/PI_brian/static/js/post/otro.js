@@ -3,7 +3,7 @@ $(document).ready(function(){
 	/* BOTON RESPONDER*/
 	var $botones_responder = $("button[data-post-id]");
 	$botones_responder.click(function(){
-		$(this).siblings("div[data-post-id]").toggleClass("hidden");
+		$("div.responder-container[data-post-id=" + $(this).data("post-id") + "]").toggleClass("hidden");
 	});
 
 	/*RESPONDER A UN POST*/

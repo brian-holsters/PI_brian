@@ -32,7 +32,6 @@ span.perfil-info a:hover{
     min-height: 80px;
     margin: 10px auto;
     text-align: center;
-    /*vertical-align: middle;*/
 }
 .post-list-element:first-child{
     margin-top: 0;
@@ -85,9 +84,8 @@ span.perfil-info a:hover{
     border-top: 1px solid #aaa;
 }
 
-.respuestas-container{
 
-}
+/* respuestas */
 
 .respuestas-toggle{
     width: 100%;
@@ -112,23 +110,12 @@ span.perfil-info a:hover{
     height: 10px;
     width: 90px;
 }
-/*
-.respuestas{
-    list-style: none;
-    text-align: right;
+
+/* responder */
+.responder-container{
+    text-align: center;
 }
-.respuestas li{
-    display: inline-block;
-    text-align: left;
-    max-width: 300px;
+.respuesta-texto{
     width: 100%;
+    text-align: left;
 }
-
-.respuestas .post-texto{
-    min-height: 0;
-}
-
-
-
-
-*/

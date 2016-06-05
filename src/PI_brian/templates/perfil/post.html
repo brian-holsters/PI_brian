@@ -23,20 +23,20 @@
                     </ul>
                 </div>
             </div>
+            {% if user.is_authenticated and post.user.username != user.username %}
+                <div data-post-id="{{post.id}}" class="hidden responder-container">
+                    <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
+                        <input name="texto" type="text" class=" form-control respuesta-texto">
+                        <input class="btn btn-orange" type="submit" value="Responder">
+                    </form>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
-
-    <!-- AQUI VAN LAS RESPUESTAS -->
     {% if post.es_op %}
         <!-- RESPONDER (solo si no eres el propietario del perfil) -->
         {% if user.is_authenticated and post.user.username != user.username %}
             <button data-post-id="{{post.id}}" class="btn btn-orange responder-toggle">Responder</button>
-            <div data-post-id="{{post.id}}" class="hidden respuesta-container">
-            <form data-post-id="{{post.id}}" id="respuesta-{{post.id}}" action="" method="post">
-                <input name="texto" type="text" class="repuesta-texto">
-                <input type="submit" value="Responder">
-            </form>
-        </div>
         {% else %}
         <div class="respuestas-invisible"></div>
         {% endif %}
